@@ -1,0 +1,30 @@
+body{
+    background-color: #151515;
+    color: white;
+    margin: 0;
+}
+
+.main-content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.question-footer{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.quiz-card{
+    width: 30rem;
+    background: rgb(214,0,255);
+    background: linear-gradient(0deg, rgba(214,0,255,1) 0%, rgba(45,196,253,1) 100%);
+}
+
+.card{
+    background-color: #15151577;
+    color: white;
+}
