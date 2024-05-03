@@ -28,3 +28,9 @@ body{
     background-color: #15151577;
     color: white;
 }
+
+.card:hover{
+    background-color: #f700ff77;
+    color: white;
+    cursor: pointer;
+}
