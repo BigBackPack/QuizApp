@@ -25,37 +25,48 @@
     <div class="main-content">
         <div class="card quiz-card">
             <img src="img/abstarct_1.jpg" class="card-img-top" alt="...">
-            <div class="card-body">
+
+            <div class="card-body" id="end-screen" style="display: none;">
+              <h3>The Quiz is Over!</h3>
+              <p>You had <b id="result-right">0</b> from <b id="result-total">0</b> question right.</p>
+              <button class="btn btn-warning" onclick="restartQuiz()">RESTART QUIZ</button>
+            </div>
+
+            <div class="card-body" id="quiz-screen">
               <h5 class="card-title" id="questiontext">Question:</h5>
               
-              <div class="card mb-2">
+              <div class="card option mb-2">
                 <div class="card-body" id="answer_1" onclick="evalAnswer('answer_1')">
                   This is some text within a card body.
                 </div>
               </div>
     
-              <div class="card mb-2">
+              <div class="card option mb-2">
                 <div class="card-body" id="answer_2" onclick="evalAnswer('answer_2')">
                   This is some text within a card body.
                 </div>
               </div>
     
-              <div class="card mb-2">
+              <div class="card option mb-2">
                 <div class="card-body" id="answer_3" onclick="evalAnswer('answer_3')">
                   This is some text within a card body.
                 </div>
               </div>
     
-              <div class="card mb-2">
+              <div class="card option mb-2">
                 <div class="card-body" id="answer_4" onclick="evalAnswer('answer_4')">
                   This is some text within a card body.
                 </div>
               </div>
 
-              <div class="question-footer">
-                <div><b>1</b>/<b id="all-question">5</b></div>
+              <div class="progress mb-5 mt-5" role="progressbar" aria-label="Animated striped example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div id="progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" style="width: 0%"></div>
+              </div>
 
-                <button class="btn btn-warning">NEXT QUESTION</button>
+              <div class="question-footer">
+                <div><b id="counter">1</b>/<b id="all-question">5</b></div>
+
+                <button class="btn btn-warning" disabled id="next-question-btn" onclick="nextQuestion()">NEXT QUESTION</button>
               </div>
             </div>
           </div>

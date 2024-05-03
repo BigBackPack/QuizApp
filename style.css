@@ -24,13 +24,17 @@ body{
     background: linear-gradient(0deg, rgba(214,0,255,1) 0%, rgba(45,196,253,1) 100%);
 }
 
-.card{
+.option{
     background-color: #15151577;
     color: white;
 }
 
-.card:hover{
+.option:hover{
     background-color: #f700ff77;
     color: white;
     cursor: pointer;
 }
+
+.progress{background-color: #151515b9;}
+
+.progress-bar-animated{background-color: #ff00ea;}

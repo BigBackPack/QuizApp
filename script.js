@@ -26,7 +26,7 @@ let questions = [
     {
         "question": "How to nest a website inside a wesite?",
         "answer_1": "By using hyperlinks",
-        "answer_2": "With the help ov an site index",
+        "answer_2": "With the help of an site index",
         "answer_3": "By using a dynamic table structure",
         "answer_4": "It is not possibel without plug ins",
         "right_answer": 1
@@ -43,6 +43,13 @@ let questions = [
 
 
 let currentQuestionPos = 0;
+let counter = 1;
+let correctAnswers = 0;
+let progress = 0;
+
+let audioWin = new Audio("audio/win.ogg");
+let audioFail = new Audio("audio/fail.ogg");
+let audioEnd = new Audio("audio/end.ogg");
 
 
 function init() {
@@ -52,14 +59,22 @@ function init() {
 
 
 function showQuestion() {
-    let currentQuestion = questions[currentQuestionPos];
+    if (counter - 1 < questions.length) {
+        let currentQuestion = questions[currentQuestionPos];
 
-    document.getElementById("questiontext").innerHTML = currentQuestion["question"];
-    document.getElementById("answer_1").innerHTML = currentQuestion["answer_1"];
-    document.getElementById("answer_2").innerHTML = currentQuestion["answer_2"];
-    document.getElementById("answer_3").innerHTML = currentQuestion["answer_3"];
-    document.getElementById("answer_4").innerHTML = currentQuestion["answer_4"];
+        document.getElementById("questiontext").innerHTML = currentQuestion["question"];
+        document.getElementById("answer_1").innerHTML = currentQuestion["answer_1"];
+        document.getElementById("answer_2").innerHTML = currentQuestion["answer_2"];
+        document.getElementById("answer_3").innerHTML = currentQuestion["answer_3"];
+        document.getElementById("answer_4").innerHTML = currentQuestion["answer_4"];
+    } else {
+        document.getElementById("end-screen").style = "display: block";
+        document.getElementById("quiz-screen").style = "display: none";
+        document.getElementById("result-right").innerHTML = `${correctAnswers}`;
+        document.getElementById("result-total").innerHTML = `${counter -1}`;
+    }
 }
+
 
 function evalAnswer(answer_id) {
     let question = questions[currentQuestionPos];
@@ -69,8 +84,41 @@ function evalAnswer(answer_id) {
 
     if(selcetedQusetionNumber == rightAnswer) {
         document.getElementById(answer_id).parentNode.classList.add("bg-success");
+        document.getElementById("next-question-btn").disabled = false;
+        correctAnswers++;
+        audioWin.play();
     } else {
         document.getElementById(answer_id).parentNode.classList.add("bg-danger");
         document.getElementById(idOfRightAnswer).parentNode.classList.add("bg-success");
+        document.getElementById("next-question-btn").disabled = false;
+        audioFail.play();
     }
+}
+
+
+function nextQuestion() {
+    currentQuestionPos += 1;
+        for (let i = 1; i < 5; i ++) {        
+            document.getElementById("answer_" + i).parentNode.classList.remove("bg-success");
+            document.getElementById("answer_" + i).parentNode.classList.remove("bg-danger");
+        }
+        document.getElementById("next-question-btn").disabled = true;
+
+        counter ++;
+        document.getElementById("counter").innerHTML = `${counter}`;
+
+        progress += 20;
+        document.getElementById("progress-bar").style = `width: ${progress}%`;
+
+        showQuestion()
+    }
+
+
+function restartQuiz() {
+    audioEnd.play();
+    setTimeout(reloadPage, 600);
+}
+
+function reloadPage(){
+    window.location = "index.html", self;
 }
